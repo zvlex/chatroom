@@ -1,0 +1,11 @@
+= simple_form_for @user, defaults: { input_html: { class: 'form-control' } }  do |f|
+  .form-group
+    = f.input :email
+  .form-group
+    = f.input :password
+  .form-group
+    = f.input :password_confirmation
+  .form-group
+    = f.submit 'Sign In', class: 'btn btn-success btn-block'
+
+

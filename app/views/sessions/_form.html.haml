@@ -1,0 +1,7 @@
+= simple_form_for :session, url: sessions_path, defaults: { input_html: { class: 'form-control' } } do |f|
+  .form-group
+    = f.input :email
+  .form-group
+    = f.input :password
+  .form-group
+    = f.submit 'Login', class: 'btn btn-success btn-block'

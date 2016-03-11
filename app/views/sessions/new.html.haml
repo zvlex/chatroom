@@ -1,0 +1,11 @@
+.row
+  .col-md-offset-4.col-md-4
+    %h1.text-center Sign In
+
+  .col-md-offset-4.col-md-4
+    - unless flash.empty?
+      .alert.alert-dismissable.alert-warning
+        = flash[:error]
+
+  .col-md-offset-4.col-md-4
+    = render 'form'

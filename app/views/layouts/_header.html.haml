@@ -1,0 +1,14 @@
+%header
+  %nav.navbar.navbar-default
+    .navbar-header
+      = link_to 'Home', root_url, class: 'navbar-brand'
+
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          = link_to 'Some', '#', class: 'nav-link'
+
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to 'Sign in', sign_in_path
+        = link_to 'Registration', sign_up_path, class: 'btn btn-success navbar-btn'
