@@ -1,4 +1,4 @@
-class RMemberStatusService
+class RoomMemberStatusService
   attr_reader :user_id, :room_key
 
   def initialize(options={})
