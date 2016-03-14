@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_filter :require_login, except: [:edit, :update]
+  before_filter :hide_auth_form
 
   def new
     @user = User.new

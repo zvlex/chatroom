@@ -1,0 +1,8 @@
+%table.pure-table
+  %thead
+    %tr
+      %th= Room.human_attribute_name(:id)
+      %th= Room.human_attribute_name(:name)
+      %th= Room.human_attribute_name(:description)
+  %tbody
+    = render @rooms

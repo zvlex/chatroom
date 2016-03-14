@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  skip_before_filter :require_login, except: :destroy
+  before_filter :hide_auth_form, except: :destroy
+
   def new
     @user_session = User.new
   end
@@ -13,7 +16,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout and redirect_to root_url
+    logout
+    redirect_to root_url
   end
 
   private

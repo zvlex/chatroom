@@ -20,14 +20,15 @@ gem 'sorcery'
 
 gem 'haml-rails'
 gem 'simple_form'
-gem 'bootstrap-sass'
-
+gem 'purecss-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'gon'
+gem 'font-awesome-sass'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,7 +1,14 @@
-= simple_form_for :session, url: sessions_path, defaults: { input_html: { class: 'form-control' } } do |f|
-  .form-group
-    = f.input :email
-  .form-group
-    = f.input :password
-  .form-group
-    = f.submit 'Login', class: 'btn btn-success btn-block'
+.pure-g
+  .pure-u-1-3
+  .pure-u-1-3
+    = simple_form_for :session, url: sessions_path, html: { class: 'pure-form pure-form-stacked' } do |f|
+      - unless flash.empty?
+        .pure-u-1.notify-error.pure-message-error
+          = flash[:error]
+
+      .pure-control-group
+        = f.input :email, input_html: { class: 'pure-input-1' }
+      .pure-control-group
+        = f.input :password, input_html: { class: 'pure-input-1' }
+      .pure-control-group.m-p-15
+        = f.submit 'Login', class: 'pure-button pure-input-1 pure-button-primary'

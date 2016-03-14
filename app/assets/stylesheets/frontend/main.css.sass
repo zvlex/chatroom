@@ -1,6 +1,66 @@
-@import "bootstrap-sprockets"
-@import "bootstrap"
+@import "font-awesome-sprockets"
+@import "font-awesome"
 
-.main-wrapper
+.main-nav-menu
+  margin: 0
+  padding: 1rem
+  background: rgb(249, 249, 249)
+
+.float-right
+  float: right
+
+.float-left
+  float: left
+
+.text-center
+  text-align: center
+
+.m-p-15
   margin-top: 1.5rem
 
+.pure-message
+  margin: 5px auto
+  text-align: center
+  font-size: 14px
+  border-radius: 2px
+
+.pure-message-error
+  color: #BD6060
+  background-color: #ffdfdf
+
+.pure-message-warning
+  color: #CEA176
+  background-color: #ffffdd
+
+.pure-message-success
+  color: #80A75F
+  background-color: #D6E9C6
+
+.pure-message-info
+  color: #5D92BB
+  background-color: #e1f2ff
+
+.notify-error
+  @extend .pure-message
+  margin: 0
+  margin-bottom: 1.1rem
+  padding-top: 0.5rem
+  padding-bottom: 0.5rem
+
+table
+  width: 100%
+
+.status-icon
+  @extend .fa
+
+  &.online
+    @extend .fa-circle
+    color: rgba(115, 195, 3, 1)
+
+  &.offline
+    @extend .fa-circle-thin
+    color: rgb(220, 161, 161)
+
+.member-list
+  table
+    width: 90%

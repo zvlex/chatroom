@@ -1,0 +1,4 @@
+%tr{class: room_odd_table_class(room.id)}
+  %td= room.id
+  %td= link_to room.name, room_path(room)
+  %td= room.description

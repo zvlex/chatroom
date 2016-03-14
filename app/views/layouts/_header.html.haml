@@ -1,14 +1,22 @@
 %header
-  %nav.navbar.navbar-default
-    .navbar-header
-      = link_to 'Home', root_url, class: 'navbar-brand'
+  %nav.pure-menu.pure-menu-horizontal.main-nav-menu
+    = link_to 'Home', root_url, class: 'pure-menu-heading pure-menu-link'
 
-    .collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li
-          = link_to 'Some', '#', class: 'nav-link'
+    %ul.pure-menu-list
+      %li.pure-menu-item
+        = link_to 'Rooms', rooms_path, class: 'pure-menu-link'
 
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          = link_to 'Sign in', sign_in_path
-        = link_to 'Registration', sign_up_path, class: 'btn btn-success navbar-btn'
+    %ul.pure-menu-list.float-right
+      - if logged_in?
+        %li.pure-menu-item
+          = link_to 'Create Room', new_room_path, class: 'pure-button pure-button-primary'
+        %li.pure-menu-item
+          = link_to 'Profile', '#', class: 'pure-button'
+        %li.pure-menu-item
+          = link_to 'Logout', :logout, method: :post, class: 'pure-button pure-button-primary'
+
+      - else
+        %li.pure-menu-item
+          = link_to 'Sign in', :sign_in, class: 'pure-menu-link'
+        %li.pure-menu-item
+          = link_to 'Registration', :sign_up, class: 'pure-button pure-button-primary'

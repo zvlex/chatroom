@@ -1,0 +1,15 @@
+%h1 Rooms#show
+
+.pure-g
+  .pure-u-3-5
+    #messages
+      = render @messages
+
+    = simple_form_for :message, html: { class: 'pure-form pure-form-stacked' } do |f|
+      .pure-control-group
+        = f.input :content, as: :text, input_html: { 'data-behavior': 'room_speaker', class: 'pure-input-1-3' }
+
+
+  .pure-u-1-5
+  .pure-u-1-5.member-list
+    = render partial: 'members', locals: { members: [] }

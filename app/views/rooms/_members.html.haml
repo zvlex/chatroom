@@ -1,0 +1,14 @@
+#members
+  %table.pure-table.pure-table-horizontal
+    - User.all.each do |user|
+      %tr
+        - if members.include?(user.id.to_s)
+          %td
+            %i.status-icon.online
+          %td
+            %small #{ user.email }
+        - else
+          %td
+            %i.status-icon.offline
+          %td
+            %small #{ user.email }

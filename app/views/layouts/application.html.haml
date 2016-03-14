@@ -5,12 +5,16 @@
     %title Chatroom
     = csrf_meta_tags
     = action_cable_meta_tag
+    = include_gon
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   %body
-    = render 'layouts/header'
+    .pure-g
+      .pure-u-1
+        = render 'layouts/header'
 
-    .container.main-wrapper
-      = yield
+    .pure-g
+      .pure-u-5-5
+        = yield
 
     = render 'layouts/footer'
