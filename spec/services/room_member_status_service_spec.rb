@@ -3,36 +3,36 @@ require 'rails_helper'
 describe RoomMemberStatusService do
   let(:user) { create(:user) }
   let(:room) { create(:room) }
-  let(:options) { {user_id: user, room_id: room} }
+  let(:all_members) { "room:#{room.id}:members" }
+  let(:online_members) { "room:#{room.id}:online" }
+  let(:options) { {user_id: user.id, room_id: room.id} }
+  let(:status_service) { RoomMemberStatusService.new(options) }
 
   it 'marks user as online' do
-    RoomMemberStatusService.new(options).mark_as_online
+    10.times do
+      member = create(:member, room: room)
+      $redis.sadd(all_members, member.id)
+    end
 
-    expect(current_room_member_list).not_to be_empty
+    status_service.mark_as_online
+
+    expect($redis.smembers(online_members)).not_to be_empty
   end
 
   specify 'user goes offline' do
-    RoomMemberStatusService.new(options).mark_as_online
-    RoomMemberStatusService.new(options).go_offline
+    status_service.mark_as_online
+    status_service.go_offline
 
-    expect(current_room_member_list).to be_empty
+    expect($redis.smembers(online_members)).to be_empty
   end
 
-  it 'activates user' do
-    RoomMemberStatusService.new(options).activate_user
+  it 'returns collections of room users' do
+    collection = status_service.user_collection(all_members)
 
-    expect(current_room_member_list).not_to be_empty
+    expect(collection.size).to eq(1)
   end
 
-  it 'gets members list' do
-    RoomMemberStatusService.new(options).mark_as_online
-    member_list = RoomMemberStatusService.new(options).member_list
-
-    expect(current_room_member_list).to eq(member_list)
-  end
-
-  def current_room_member_list
-    $redis_room_users.lrange("room:#{room}", 0, -1)
+  it 'creates job' do
+    expect(status_service.create_room_member_status_job.class).to eq(RoomMemberStatusJob)
   end
 end
-

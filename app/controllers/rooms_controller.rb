@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @messages = @room.messages.order(created_at: :desc)
+    @messages = @room.messages.order(created_at: :asc).limit(100)
   end
 
   def new
@@ -15,7 +15,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(room_params)
+    @room = current_user.rooms.build(room_params)
 
     if @room.save
       redirect_to @room, notice: 'Room created'

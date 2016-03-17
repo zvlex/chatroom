@@ -6,4 +6,5 @@ App.user_status = App.cable.subscriptions.create { channel: "UserStatusChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
+    # TODO: Move to Vue.js
     $("#members").html data["members"]

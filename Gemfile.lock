@@ -127,6 +127,8 @@ GEM
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     puma (3.1.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     purecss-rails (0.6.0)
       railties (>= 3.2.6, < 5)
     rack (2.0.0.alpha)
@@ -243,6 +245,7 @@ DEPENDENCIES
   pg (~> 0.18)
   pry-rails
   puma
+  pundit
   purecss-rails
   rails (>= 5.0.0.beta3, < 5.1)
   redis (~> 3.0)

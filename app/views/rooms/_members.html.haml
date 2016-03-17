@@ -1,14 +1,10 @@
-#members
-  %table.pure-table.pure-table-horizontal
-    - User.all.each do |user|
-      %tr
-        - if members.include?(user.id.to_s)
-          %td
-            %i.status-icon.online
-          %td
-            %small #{ user.email }
-        - else
-          %td
-            %i.status-icon.offline
-          %td
-            %small #{ user.email }
+.pure-menu.pure-menu-scrollable.member-list
+  = link_to 'Members', '#', class: 'pure-menu-link pure-menu-heading members-header'
+
+  %ul.pure-menu-list
+    - members.each do |status, users|
+      - users.each do |username|
+        %li.pure-menu-item
+          = link_to '#', class: 'pure-menu-link' do
+            %i{class: "status-icon #{status}"}
+            #{ username }

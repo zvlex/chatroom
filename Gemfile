@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'sorcery'
+gem 'pundit'
 
 gem 'haml-rails'
 gem 'simple_form'

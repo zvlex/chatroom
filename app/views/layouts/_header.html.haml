@@ -1,12 +1,12 @@
 %header
-  %nav.pure-menu.pure-menu-horizontal.main-nav-menu
-    = link_to 'Home', root_url, class: 'pure-menu-heading pure-menu-link'
+  %nav.pure-menu.pure-menu-horizontal
+    = link_to 'Home', root_url, class: 'pure-menu-heading pure-menu-link float-left'
 
-    %ul.pure-menu-list
+    %ul.pure-menu-list.float-left
       %li.pure-menu-item
         = link_to 'Rooms', rooms_path, class: 'pure-menu-link'
 
-    %ul.pure-menu-list.float-right
+    %ul.pure-menu-list.float-right.m-r-15
       - if logged_in?
         %li.pure-menu-item
           = link_to 'Create Room', new_room_path, class: 'pure-button pure-button-primary'

@@ -1,12 +1,19 @@
 class RoomChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "room_channel"
+    if !!params[:room_id]
+      stream_from "room_channel"
+    end
   end
 
   def unsubscribed
   end
 
   def send_message(data)
-    Message.create! user_id: 1, room_id: 2, content: data['message']
+    room = Room.find_by(id: params[:room_id])
+
+    # Only Ruby 2.3
+    if current_user&.room_member?(room)
+      current_user.messages.create! room: room, content: data['message']
+    end
   end
 end

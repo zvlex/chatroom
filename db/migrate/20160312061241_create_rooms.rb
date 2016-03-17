@@ -3,7 +3,8 @@ class CreateRooms < ActiveRecord::Migration[5.0]
     create_table :rooms do |t|
       t.string :name, null: false
       t.text :description, null: false
-      t.boolean :is_visible, null: false, default: true
+      t.boolean :is_visible, null: false, default: false
+      t.integer :user_id, null: false
 
       t.timestamps
     end

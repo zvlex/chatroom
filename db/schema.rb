@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312155920) do
+ActiveRecord::Schema.define(version: 20160316192921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "members", force: :cascade do |t|
+    t.integer  "room_id",                null: false
+    t.integer  "user_id",                null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "role",       default: 1, null: false
+  end
+
+  add_index "members", ["room_id", "user_id"], name: "index_members_on_room_id_and_user_id", unique: true, using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -28,11 +38,12 @@ ActiveRecord::Schema.define(version: 20160312155920) do
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "rooms", force: :cascade do |t|
-    t.string   "name",                       null: false
-    t.text     "description",                null: false
-    t.boolean  "is_visible",  default: true, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "name",                        null: false
+    t.text     "description",                 null: false
+    t.boolean  "is_visible",  default: false, null: false
+    t.integer  "user_id",                     null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "rooms", ["name"], name: "index_rooms_on_name", unique: true, using: :btree
@@ -44,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160312155920) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_admin",         default: false, null: false
+    t.string   "username",                         null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
