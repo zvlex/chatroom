@@ -12,8 +12,8 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require vue
-#= require vue-resource
+#= require vue.min
+#= require vue-resource.min
 #= require_tree .
 
 $(document).ready ->
