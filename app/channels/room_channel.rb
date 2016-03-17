@@ -11,8 +11,7 @@ class RoomChannel < ApplicationCable::Channel
   def send_message(data)
     room = Room.find_by(id: params[:room_id])
 
-    # Only Ruby 2.3
-    if current_user&.room_member?(room)
+    if current_user && current_user.room_member?(room)
       current_user.messages.create! room: room, content: data['message']
     end
   end

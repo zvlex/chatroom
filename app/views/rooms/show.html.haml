@@ -10,7 +10,7 @@
     #messages
       = render @messages
 
-    %message-form{'inline-template': true, "is-room-member": current_user&.room_member?(@room)}
+    %message-form{'inline-template': true, "is-room-member": current_user && current_user.room_member?(@room)}
       .pure-g
         .pure-u-1.message-form-block
           %div(v-if = 'isRoomMember')
