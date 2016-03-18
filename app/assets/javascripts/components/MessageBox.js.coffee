@@ -4,9 +4,6 @@ window.MessageBox = Vue.extend
   components:
     'message': window.Message
 
-  data: ->
-    msg_array: @messages
-
   props:
     messages:
       type: Array
@@ -30,5 +27,5 @@ window.MessageBox = Vue.extend
       @messages
 
     scrollDown: ->
-      document.getElementById('messages')
-      messages.scrollTop = messages.scrollHeight if messages
+      message_box = document.getElementById('messages')
+      message_box.scrollTop = message_box.scrollHeight if message_box
