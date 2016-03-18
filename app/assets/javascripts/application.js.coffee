@@ -21,5 +21,7 @@ $(document).ready ->
 
   window.root_vue = new Vue
     el: 'body'
+
     components:
       'message-form': window.MessageForm
+      'message-box': window.MessageBox

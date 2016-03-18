@@ -18,6 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'sorcery'
 gem 'pundit'
+gem 'active_model_serializers'
 
 gem 'haml-rails'
 gem 'simple_form'

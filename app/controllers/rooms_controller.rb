@@ -7,7 +7,9 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @messages = @room.messages.order(created_at: :asc).limit(100)
+
+    room_messages = @room.messages.order(created_at: :asc).limit(100)
+    @messages = ActiveModel::ArraySerializer.new(room_messages, each_serializer: MessagesSerializer)
   end
 
   def new

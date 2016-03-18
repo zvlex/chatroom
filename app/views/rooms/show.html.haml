@@ -7,8 +7,7 @@
 
 .pure-g
   .pure-u-4-5
-    #messages
-      = render @messages
+    %message-box(messages = "#{@messages.to_json}")
 
     %message-form{'inline-template': true, "is-room-member": current_user && current_user.room_member?(@room)}
       .pure-g

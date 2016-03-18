@@ -1,0 +1,4 @@
+%script( type='text/x-template' id='message-box-tpl' )
+  #messages
+    %div(v-for = 'message in messages')
+      %message(:message = 'message')

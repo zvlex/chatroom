@@ -15,7 +15,6 @@ class Room < ApplicationRecord
     super value.downcase
   end
 
-
   private
     def join_room_as_admin
       member = self.members.build(user: self.user, role: 0)
