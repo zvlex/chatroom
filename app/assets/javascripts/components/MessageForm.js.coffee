@@ -1,14 +1,17 @@
 window.MessageForm = Vue.extend
+  template: '#message-form-tpl'
+
   props:
     isRoomMember:
       type: Boolean
-      required: true
+    roomId:
+      require: true
 
   data: ->
     message: ''
 
   methods:
-    joinRoom: (room_id) ->
+    joinRoom: ->
       unless gon.user_id
         location.href = '/sign_in'
         return
@@ -16,7 +19,7 @@ window.MessageForm = Vue.extend
       # TODO: JS rotes???
       resource = @$resource('/members')
 
-      resource.save({}, member: { room_id: room_id }).then ((response) ->
+      resource.save({}, member: { room_id: @roomId }).then ((response) ->
         @isRoomMember = !@isRoomMember
       ), (response) ->
         console.log 0

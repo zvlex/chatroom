@@ -1,0 +1,8 @@
+%script( type='text/x-template' id='member-box-tpl' )
+  .pure-menu.pure-menu-scrollable.member-list
+    = link_to 'Members', '#', class: 'pure-menu-link pure-menu-heading members-header'
+
+    %ul.pure-menu-list
+      %div(v-for = "(status, values) in members")
+        %li.pure-menu-item(v-for = 'member in values')
+          %member(:member = 'member' :status = 'status'))

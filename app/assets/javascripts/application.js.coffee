@@ -25,3 +25,4 @@ $(document).ready ->
     components:
       'message-form': window.MessageForm
       'message-box': window.MessageBox
+      'member-box': window.MemberBox

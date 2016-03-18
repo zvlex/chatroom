@@ -9,8 +9,13 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   %body
+    -# TODO: move to vue_templaes
     = render "messages/message_tpl"
+    = render "messages/message_form_tpl"
     = render "messages/message_box_tpl"
+
+    = render "members/member_tpl"
+    = render "members/member_box_tpl"
 
     .pure-g
       .pure-u-1.main-nav-menu

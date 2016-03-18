@@ -9,19 +9,9 @@
   .pure-u-4-5
     %message-box(messages = "#{@messages.to_json}")
 
-    %message-form{'inline-template': true, "is-room-member": current_user && current_user.room_member?(@room)}
-      .pure-g
-        .pure-u-1.message-form-block
-          %div(v-if = 'isRoomMember')
-            = simple_form_for :message, html: { class: 'pure-form pure-form-stacked' } do |f|
-              .pure-control-group
-                = f.input :content, as: :text, label: false, input_html: { '@keyup.enter':'sendMessage', class: 'pure-input-1', 'v-model': 'message' }
-              .pure-control-group
-                = f.submit 'Send', class: 'pure-button pure-button-primary pure-input-1', '@click.prevent': 'sendMessage'
-          %div(v-else)
-            = simple_form_for :join, html: { class: 'pure-form pure-form-stacked' } do |f|
-              = f.submit 'Join', class: 'pure-button pure-input-1 button-success', '@click.prevent': "joinRoom(#{@room.id})"
+    - room_member = !!(current_user && current_user.room_member?(@room))
+
+    %message-form(is-room-member = room_member :room-id = "#{@room.id}")
 
   .pure-u-1-5
-    #members
-      = render partial: 'members', locals: { members: {} }
+    %member-box
