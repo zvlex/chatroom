@@ -4,4 +4,8 @@ module ApplicationHelper
       'pure-table-odd'
     end
   end
+
+  def created_at(datetime)
+    datetime.strftime("%d %B %Y %H:%M")
+  end
 end

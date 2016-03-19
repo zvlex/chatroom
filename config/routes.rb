@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
-  root 'main#index'
+  root 'rooms#index'
 
   get 'sign_up' => 'users#new', as: :sign_up
   get 'sign_in' => 'sessions#new', as: :sign_in
   post 'logout' => 'sessions#destroy', as: :logout
+
+  get '/profile/(:id)' => 'users#show', as: :profile
 
   resources :users, except: :destroy
   resources :sessions, only: [:new, :create, :destroy]
