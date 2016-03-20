@@ -1,5 +1,5 @@
 class RoomMemberStatusService
-  attr_reader :user_id, :room_id, :room_users
+  attr_reader :user_id, :room_id, :room_users, :status
 
   STATUSES = {
     room_members: 'members',
@@ -18,6 +18,7 @@ class RoomMemberStatusService
     @user_id = options[:user_id]
     @room_id = options[:room_id]
     @room_users = Room.find(room_id).members.map(&:user)
+    @status = {}
 
     setup_members
   end
@@ -43,12 +44,14 @@ class RoomMemberStatusService
   def mark_as_online
     $redis.smove(room_members, online, user_id)
 
+    send_notification(:joined)
     create_room_member_status_job
   end
 
   def go_offline
     $redis.smove(online, room_members, user_id)
 
+    send_notification(:left)
     create_room_member_status_job
   end
 
@@ -66,12 +69,17 @@ class RoomMemberStatusService
     room_users.select { |user| user.id == user_id.to_i }
   end
 
+  def send_notification(notification_type)
+    status[:messages] = MessageNotificationsService.new(user_id, notification_type).message
+  end
+
   def members
     {
       online: user_collection(online).uniq,
-      offline: user_collection(room_members).uniq
+      offline: user_collection(room_members).uniq,
+      status: status
     }
   end
 
-  default_room_keys :room_members, :online
+  default_room_keys :room_members, :online, :notifications
 end

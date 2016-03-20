@@ -15,13 +15,20 @@ window.MessageBox = Vue.extend
 
   events:
     'signal:addMessage': (data) ->
-      @messages = (msg for msg in @appendToMessages(data))
+      @messages = @messagesArray(data)
+
+    'signal:notify': (data) ->
+      unless data["messages"]["user_id"] == gon.user_id
+        @messages = @messagesArray(data)
 
   watch:
     messages: ->
       @scrollDown()
 
   methods:
+    messagesArray: (data) ->
+      msg for msg in @appendToMessages(data)
+
     appendToMessages: (data) ->
       @messages.push data['messages']
       @messages
