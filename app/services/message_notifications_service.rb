@@ -17,7 +17,7 @@ class MessageNotificationsService
     {
       username: DEFAULT_BOT_NAME,
       content: generate_content_message,
-      created_at: "#{Time.now.strftime("%d %B %Y %H:%M")}",
+      created_at: "#{Time.current.strftime("%d %B %Y %H:%M")}",
       user_id: user.id
     }
   end
